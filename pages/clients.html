@@ -1,0 +1,104 @@
+<!-- Clients Section -->
+<div id="clientsSection" class="p-0">
+    <div class="d-flex justify-content-between mb-3">
+        <input type="text" id="clientSearch" class="form-control w-50" placeholder="بحث عن موكل...">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+            <i class="fas fa-plus"></i> إضافة موكل جديد
+        </button>
+    </div>
+    <div class="card shadow">
+        <div class="table-responsive table-cards">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>رقم التوكيل</th>
+                        <th>الاسم</th>
+                        <th>الرقم القومي</th>
+                        <th>رقم الهاتف</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="clientsTableBody">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Client Modal -->
+<div class="modal fade" id="addClientModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">إضافة موكل جديد</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addClientForm">
+                    <div class="mb-3">
+                        <label class="form-label">اسم الموكل</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الرقم القومي</label>
+                        <input type="text" class="form-control" name="nationalId">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">رقم الهاتف</label>
+                        <input type="text" class="form-control" name="mobile">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">العنوان</label>
+                        <textarea class="form-control" name="address"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">رقم التوكيل</label>
+                        <input type="text" class="form-control" name="powerOfAttorneyNo">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">حفظ</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Client Modal -->
+<div class="modal fade" id="editClientModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تعديل الموكل</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editClientForm">
+                    <input type="hidden" name="id">
+                    <div class="mb-3">
+                        <label class="form-label">اسم الموكل</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">الرقم القومي</label>
+                        <input type="text" class="form-control" name="nationalId">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">رقم الهاتف</label>
+                        <input type="text" class="form-control" name="mobile">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">العنوان</label>
+                        <textarea class="form-control" name="address"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">رقم التوكيل</label>
+                        <input type="text" class="form-control" name="powerOfAttorneyNo">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">حفظ التغييرات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

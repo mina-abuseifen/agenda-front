@@ -1,0 +1,235 @@
+<!-- Dashboard Section -->
+<div id="dashboardSection" class="p-0">
+    
+    <!-- Empty State Profile Banner (Hidden by default) -->
+    <div id="profileEmptyState" class="alert alert-warning shadow-sm border-0 rounded-4 mb-4 d-none align-items-center justify-content-between p-4" style="background-color: #fff8e1; border-right: 4px solid #ffc107 !important;">
+        <div>
+            <h5 class="text-dark fw-bold mb-1"><i class="fas fa-exclamation-triangle text-warning me-2"></i> بيانات المكتب غير مكتملة</h5>
+            <p class="text-muted mb-0">يرجى استكمال بيانات المحامي والمكتب لضمان ظهورها بشكل صحيح في التقارير والفواتير.</p>
+        </div>
+        <button class="btn btn-warning px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+            استكمال البيانات <i class="fas fa-arrow-left ms-2"></i>
+        </button>
+    </div>
+
+    <!-- Prestigious Hero Section (Dark Blue / Gold) -->
+    <div class="card border-0 shadow-lg rounded-4 mb-4 overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative;">
+        <!-- Decorative background elements -->
+        <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0) 70%);"></div>
+        <div style="position: absolute; bottom: -50px; left: -50px; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0) 70%);"></div>
+        
+        <div class="card-body p-4 p-md-5 position-relative z-1 d-flex flex-column flex-md-row justify-content-between align-items-center gap-4">
+            <div class="d-flex align-items-center gap-4 text-white w-100">
+                <!-- Avatar Placeholder with Gold Border -->
+                <div class="d-flex justify-content-center align-items-center rounded-circle border border-2 shadow" style="width: 100px; height: 100px; background-color: #1e293b; border-color: #d4af37 !important;">
+                    <i class="fas fa-balance-scale fa-3x" style="color: #d4af37;"></i>
+                </div>
+                
+                <div class="flex-grow-1">
+                    <h2 class="fw-bold mb-1" id="heroLawyerName" style="color: #d4af37; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                        <div class="skeleton skeleton-text w-50 bg-secondary" style="opacity: 0.3;"></div>
+                    </h2>
+                    <h5 class="text-light opacity-75 mb-3" id="heroLawyerTitle">التخصص غير محدد</h5>
+                    
+                    <div class="d-flex flex-wrap gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-building" style="color: #d4af37;"></i>
+                            <span id="heroOfficeName" class="text-light opacity-75">
+                                <div class="skeleton skeleton-text short bg-secondary" style="opacity: 0.3; display:inline-block; width:100px;"></div>
+                            </span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-id-badge" style="color: #d4af37;"></i>
+                            <span class="text-light opacity-75">رقم القيد: <span id="heroBarNumber">-</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center text-md-end shrink-0">
+                <button class="btn btn-outline-light px-4 py-2 rounded-pill" style="border-color: rgba(255,255,255,0.2);" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                    <i class="fas fa-cog me-1"></i> إعدادات المكتب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats Cards -->
+    <div class="row g-4 mb-4">
+        <!-- Active Cases -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="border-bottom: 4px solid #0ea5e9 !important;">
+                <div class="card-body p-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted fw-semibold mb-1">القضايا النشطة</p>
+                        <h2 class="fw-bold text-dark mb-0" id="activeCases">
+                            <div class="skeleton skeleton-text short mb-0 bg-secondary" style="opacity: 0.2;"></div>
+                        </h2>
+                    </div>
+                    <div class="rounded-circle d-flex justify-content-center align-items-center" style="width: 60px; height: 60px; background-color: #e0f2fe; color: #0284c7;">
+                        <i class="fas fa-briefcase fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Sessions Today -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" style="border-bottom: 4px solid #d4af37 !important;">
+                <div class="card-body p-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted fw-semibold mb-1">جلسات اليوم</p>
+                        <h2 class="fw-bold text-dark mb-0" id="upcomingSessionsToday">0</h2>
+                    </div>
+                    <div class="rounded-circle d-flex justify-content-center align-items-center" style="width: 60px; height: 60px; background-color: rgba(212,175,55,0.15); color: #d4af37;">
+                        <i class="fas fa-gavel fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pending Fees -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden" id="pendingFeesCard" style="border-bottom: 4px solid #ef4444 !important; cursor: pointer;" onclick="showPendingFeesDetails()">
+                <div class="card-body p-4 d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted fw-semibold mb-1">إجمالي الأتعاب المتبقية</p>
+                        <h3 class="fw-bold text-danger mb-0" id="totalPendingFees">
+                            <div class="skeleton skeleton-text short mb-0 bg-secondary" style="opacity: 0.2;"></div>
+                        </h3>
+                    </div>
+                    <div class="rounded-circle d-flex justify-content-center align-items-center" style="width: 60px; height: 60px; background-color: #fee2e2; color: #b91c1c;">
+                        <i class="fas fa-file-invoice-dollar fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Hearings Table Section -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-header bg-white border-bottom p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <h5 class="fw-bold mb-0 text-dark"><i class="fas fa-calendar-alt text-primary me-2"></i> جدول الجلسات القادمة (خلال 7 أيام)</h5>
+            <div class="input-group" style="width: 300px; border-radius: 50px; overflow: hidden;">
+                <span class="input-group-text bg-light border-0"><i class="fas fa-search text-muted"></i></span>
+                <input type="text" id="upcomingHearingsSearch" class="form-control bg-light border-0 shadow-none" placeholder="ابحث برقم القضية أو المحكمة...">
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-muted" style="font-size: 0.9rem;">
+                        <tr>
+                            <th class="ps-4 border-0">رقم القضية</th>
+                            <th class="border-0">المحكمة</th>
+                            <th class="border-0">تاريخ الجلسة</th>
+                            <th class="pe-4 border-0 text-end">الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="upcomingHearingsBody">
+                        <!-- Skeleton Loaders -->
+                        <tr>
+                            <td class="ps-4"><div class="skeleton skeleton-text"></div></td>
+                            <td><div class="skeleton skeleton-text"></div></td>
+                            <td><div class="skeleton skeleton-text"></div></td>
+                            <td class="pe-4"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تعديل بيانات المكتب والمحامي</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">اسم المحامي</label>
+                            <input type="text" class="form-control" name="lawyerName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">اسم المكتب</label>
+                            <input type="text" class="form-control" name="officeName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">تخصص المحامي</label>
+                            <input type="text" class="form-control" name="lawyerSpecialization" list="lawyerSpecializationOptions" maxlength="150" placeholder="اختر أو اكتب تخصص المحامي">
+                            <datalist id="lawyerSpecializationOptions">
+                                <option value="محامي بالنقض"></option>
+                                <option value="محامي بالاستئناف العالي"></option>
+                                <option value="محامي بمجلس الدولة"></option>
+                                <option value="محامي قضايا مدنية"></option>
+                                <option value="محامي قضايا جنائية"></option>
+                                <option value="محامي أحوال شخصية"></option>
+                                <option value="محامي شركات"></option>
+                                <option value="محامي عمالي"></option>
+                                <option value="محامي تجاري"></option>
+                                <option value="مستشار قانوني"></option>
+                                <option value="محام ومستشار قانوني"></option>
+                            </datalist>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الرقم الضريبي</label>
+                            <input type="text" class="form-control" name="taxNumber">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم الكارنية</label>
+                            <input type="text" class="form-control" name="barNumber">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label class="form-label">العنوان</label>
+                            <textarea class="form-control" name="address" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">حفظ التغييرات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pending Fees Details Modal -->
+<div class="modal fade" id="pendingFeesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تفاصيل الأتعاب المتبقية</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>رقم القضية</th>
+                                <th>اسم العميل</th>
+                                <th>رقم الموبايل</th>
+                                <th>المحكمة</th>
+                                <th>إجمالي الأتعاب</th>
+                                <th>المبلغ المدفوع</th>
+                                <th>المبلغ المتبقي</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingFeesTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>

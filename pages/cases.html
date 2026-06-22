@@ -1,0 +1,357 @@
+<!-- Cases Section -->
+<div id="casesSection" class="p-0">
+    <div class="d-flex justify-content-between mb-3">
+        <input type="text" id="caseSearch" class="form-control w-50" placeholder="بحث عن قضية...">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCaseModal">
+            <i class="fas fa-plus"></i> إضافة قضية جديدة
+        </button>
+    </div>
+    <div class="card shadow">
+        <div class="table-responsive table-cards">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>رقم القضية</th>
+                        <th>نوع القضية</th>
+                        <th>درجة التقاضي</th>
+                        <th>الموكل</th>
+                        <th>المحكمة</th>
+                        <th>تاريخ الجلسة</th>
+                        <th>الأتعاب</th>
+                        <th>حالة الدفع</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="casesTableBody">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Case Modal -->
+<div class="modal fade" id="addCaseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">إضافة قضية جديدة</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCaseForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم القضية</label>
+                            <input type="text" class="form-control" name="caseNo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الموكل</label>
+                            <select class="form-select" name="clientId" id="addCaseClientSelect">
+                                <option value="">اختر الموكل</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم بلاغ الشرطة</label>
+                            <input type="text" class="form-control" name="policeReportNo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">تاريخ القضية</label>
+                            <input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم الملف</label>
+                            <input type="text" class="form-control" name="fileNo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">نوع القضية</label>
+                            <input type="text" class="form-control" name="caseType">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المحكمة</label>
+                            <input type="text" class="form-control" name="court">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الدائرة</label>
+                            <input type="text" class="form-control" name="circuit">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المدعي</label>
+                            <input type="text" class="form-control" name="plaintiff">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المدعى عليه</label>
+                            <input type="text" class="form-control" name="defendant">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المحامي المقابل</label>
+                            <input type="text" class="form-control" name="opposingCounsel">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">تاريخ الجلسة</label>
+                            <input type="date" class="form-control" name="hearingDate">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">القرار</label>
+                            <textarea class="form-control" name="decision"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">متطلبات الجلسة القادمة</label>
+                            <textarea class="form-control" name="nextHearingRequirements"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الحالة</label>
+                            <select class="form-select" name="status">
+                                <option value="Active">نشطة</option>
+                                <option value="Closed">مغلقة</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الأتعاب الإجمالية (ج.م)</label>
+                            <input type="number" class="form-control" name="totalFees" step="0.01" min="0"
+                                placeholder="0.00">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المبلغ المدفوع (ج.م)</label>
+                            <input type="number" class="form-control" name="paidAmount" step="0.01" min="0"
+                                placeholder="0.00">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المبلغ المتبقي (ج.م)</label>
+                            <input type="number" class="form-control" name="remainingBalance" step="0.01" readonly>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">حفظ القضية</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Case Modal -->
+<div class="modal fade" id="editCaseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تعديل القضية</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editCaseForm">
+                    <input type="hidden" name="id">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم القضية</label>
+                            <input type="text" class="form-control" name="caseNo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الموكل</label>
+                            <select class="form-select" name="clientId" id="editCaseClientSelect">
+                                <option value="">اختر الموكل</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم بلاغ الشرطة</label>
+                            <input type="text" class="form-control" name="policeReportNo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">تاريخ القضية</label>
+                            <input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">رقم الملف</label>
+                            <input type="text" class="form-control" name="fileNo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">نوع القضية</label>
+                            <input type="text" class="form-control" name="caseType">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المحكمة</label>
+                            <input type="text" class="form-control" name="court">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الدائرة</label>
+                            <input type="text" class="form-control" name="circuit">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المدعي</label>
+                            <input type="text" class="form-control" name="plaintiff">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المدعى عليه</label>
+                            <input type="text" class="form-control" name="defendant">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المحامي المقابل</label>
+                            <input type="text" class="form-control" name="opposingCounsel">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">تاريخ الجلسة</label>
+                            <input type="date" class="form-control" name="hearingDate">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">القرار</label>
+                            <textarea class="form-control" name="decision"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">متطلبات الجلسة القادمة</label>
+                            <textarea class="form-control" name="nextHearingRequirements"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الحالة</label>
+                            <select class="form-select" name="status">
+                                <option value="Active">نشطة</option>
+                                <option value="Closed">مغلقة</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">الأتعاب الإجمالية (ج.م)</label>
+                            <input type="number" class="form-control" name="totalFees" step="0.01" min="0"
+                                placeholder="0.00">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المبلغ المدفوع (ج.م)</label>
+                            <input type="number" class="form-control" name="paidAmount" step="0.01" min="0"
+                                placeholder="0.00">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">المبلغ المتبقي (ج.م)</label>
+                            <input type="number" class="form-control" name="remainingBalance" step="0.01" readonly>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">حفظ التغييرات</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Case Modal (History) -->
+<div class="modal fade" id="viewCaseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تفاصيل القضية وتحديثات الجلسات</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <!-- Tabs Navigation -->
+                <ul class="nav nav-tabs px-3 pt-3" id="caseDetailsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-panel" type="button" role="tab">تحديثات القضية</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="sessions-tab" data-bs-toggle="tab" data-bs-target="#sessions-panel" type="button" role="tab">جلسات المحكمة</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#documents-panel" type="button" role="tab">المستندات</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content p-4" id="caseDetailsTabContent">
+                    <!-- History Tab -->
+                    <div class="tab-pane fade show active" id="history-panel" role="tabpanel">
+                        <div class="mb-4 p-3 bg-light rounded text-center">
+                            <h5><i class="fas fa-user-circle text-primary"></i> <span id="viewCaseClientName"></span></h5>
+                            <p class="mb-0 text-muted">رقم التوكيل: <span id="viewCaseClientPoa"></span></p>
+                            <h4 class="mt-2 mb-0" id="viewCaseRemainingBalance"></h4>
+                        </div>
+                        <div class="mb-4">
+                            <h6>إضافة تحديث جديد:</h6>
+                            <form id="addHistoryForm" class="d-flex gap-2">
+                                <input type="hidden" id="currentCaseId" name="caseId">
+                                <input type="date" class="form-control" name="hearingDate">
+                                <input type="text" class="form-control w-50" name="decision" placeholder="القرار / التحديث">
+                                <button type="submit" class="btn btn-primary">إضافة</button>
+                            </form>
+                        </div>
+                        <h6>سجل التحديثات والنشاط:</h6>
+                        <div class="timeline-container mt-3" id="caseTimelineContainer" style="position: relative; padding-right: 15px; border-right: 2px solid #dee2e6;">
+                            <!-- Timeline events will load here -->
+                        </div>
+                    </div>
+
+                    <!-- Sessions Tab -->
+                    <div class="tab-pane fade" id="sessions-panel" role="tabpanel">
+                        <div class="mb-4">
+                            <h6>جدولة جلسة جديدة:</h6>
+                            <form id="addCaseSessionForm" class="row g-2">
+                                <input type="hidden" name="caseId">
+                                <div class="col-md-4">
+                                    <input type="date" class="form-control" name="sessionDate">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="rollNumber" placeholder="رقم الرول">
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="decision" placeholder="ملاحظات الجلسة">
+                                        <button type="submit" class="btn btn-success">إضافة</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <h6>قائمة الجلسات:</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover border">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>التاريخ</th>
+                                        <th>الرول</th>
+                                        <th>الحالة</th>
+                                        <th>القرار</th>
+                                        <th>إجراء</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="caseSessionsTableBody">
+                                    <!-- Sessions will load here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Documents Tab -->
+                    <div class="tab-pane fade" id="documents-panel" role="tabpanel">
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h6>رفع مستند</h6>
+                            <form id="uploadDocForm" class="row g-2">
+                                <input type="hidden" name="caseId">
+                                <div class="col-md-4">
+                                    <input type="file" class="form-control" id="caseDocFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="documentType" list="documentTypeOptions" placeholder="نوع المستند">
+                                    <datalist id="documentTypeOptions">
+                                        <option value="صحيفة الدعوى"></option>
+                                        <option value="مذكرة دفاع"></option>
+                                        <option value="حكم"></option>
+                                        <option value="توكيل"></option>
+                                        <option value="إيصال"></option>
+                                        <option value="مستندات الموكل"></option>
+                                        <option value="صورة بطاقة"></option>
+                                        <option value="أخرى"></option>
+                                    </datalist>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="notes" placeholder="ملاحظات">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary w-100"><i class="fas fa-upload me-1"></i> رفع</button>
+                                </div>
+                            </form>
+                        </div>
+                        <h6>مستندات القضية:</h6>
+                        <div class="row g-3" id="caseDocumentsList">
+                            <!-- Documents will load here as cards -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

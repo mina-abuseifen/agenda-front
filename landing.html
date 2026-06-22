@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المحاماة | الحل الأمثل للمكاتب القانونية</title>
+    <!-- Bootstrap 5 RTL CSS -->
+    <link rel="stylesheet" href="css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy-deep: #0f172a;
+            --navy-light: #1e293b;
+            --gold: #d4af37;
+            --gold-light: #f5d76e;
+            --off-white: #f8fafc;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Framer Motion-like CSS Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Typography & Colors */
+        .text-gold { color: var(--gold) !important; }
+        .bg-navy { background-color: var(--navy-deep) !important; }
+        .bg-navy-light { background-color: var(--navy-light) !important; }
+        
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--navy-deep);
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline-gold {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 700;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .btn-outline-gold:hover {
+            background-color: var(--gold);
+            color: var(--navy-deep);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%);
+            min-height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .hero-circle-1 {
+            position: absolute;
+            top: -10%; right: -5%;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0) 70%);
+        }
+        .hero-circle-2 {
+            position: absolute;
+            bottom: -20%; left: -10%;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0) 70%);
+        }
+
+        /* Cards */
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--gold);
+        }
+        .feature-icon-wrapper {
+            width: 70px; height: 70px;
+            border-radius: 16px;
+            background: rgba(212,175,55,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        /* Step Guide */
+        .step-circle {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: var(--navy-deep);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 0 10px rgba(15, 23, 42, 0.1);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .navbar-brand { color: var(--off-white) !important; font-weight: 800; }
+        .nav-link { color: rgba(255,255,255,0.8) !important; font-weight: 500; }
+        .nav-link:hover { color: var(--gold) !important; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="fas fa-balance-scale text-gold fa-lg"></i>
+                <span>مكتب المحاماة</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item"><a class="nav-link" href="#features">المميزات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">كيف نعمل</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+                </ul>
+                <div class="d-flex gap-3">
+                    <a href="pages/login.html" class="btn btn-outline-gold px-4 rounded-pill">تسجيل الدخول</a>
+                    <a href="#contact" class="btn btn-gold px-4 rounded-pill">ابدأ مجاناً</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white position-relative z-1">
+        <div class="hero-bg-shapes">
+            <div class="hero-circle-1"></div>
+            <div class="hero-circle-2"></div>
+        </div>
+        <div class="container position-relative z-2 pt-5">
+            <div class="row align-items-center min-vh-75 pt-5">
+                <div class="col-lg-7 text-center text-lg-start mb-5 mb-lg-0 fade-up">
+                    <span class="badge bg-gold text-navy-deep px-3 py-2 rounded-pill mb-4 fw-bold shadow-sm" style="background-color: var(--gold);">الإصدار الجديد 2026</span>
+                    <h1 class="display-3 fw-black mb-4" style="line-height: 1.3; font-weight: 900;">
+                        تطوير ممارسة المحاماة <br>
+                        <span class="text-gold">بعبقرية التقنية</span>
+                    </h1>
+                    <p class="lead mb-5 opacity-75 fs-4" style="max-width: 600px;">
+                        النظام السحابي الأول المصمم خصيصاً للمكاتب القانونية العربية. قم بإدارة قضاياك، موكليك، وأموالك في منصة واحدة آمنة وسريعة.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                        <a href="pages/login.html?tab=register" class="btn btn-gold btn-lg px-5 py-3 rounded-pill fs-5">
+                            انشئ حسابك مجاناً <i class="fas fa-arrow-left ms-2"></i>
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill fs-5 border-2">
+                            اكتشف النظام
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5 fade-up delay-200">
+                    <div class="position-relative">
+                        <!-- Abstract UI Mockup Representation -->
+                        <div class="bg-white p-2 rounded-4 shadow-lg position-relative" style="transform: rotate(-3deg);">
+                            <div class="bg-light rounded-3 p-4" style="height: 400px; border: 1px solid #e2e8f0;">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="bg-secondary rounded w-25" style="height: 20px; opacity: 0.2;"></div>
+                                    <div class="rounded-circle bg-gold" style="width: 40px; height: 40px;"></div>
+                                </div>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-6"><div class="bg-primary rounded-3 w-100" style="height: 80px; opacity: 0.1;"></div></div>
+                                    <div class="col-6"><div class="bg-success rounded-3 w-100" style="height: 80px; opacity: 0.1;"></div></div>
+                                </div>
+                                <div class="bg-secondary rounded w-100 mb-3" style="height: 40px; opacity: 0.1;"></div>
+                                <div class="bg-secondary rounded w-100 mb-3" style="height: 40px; opacity: 0.1;"></div>
+                                <div class="bg-secondary rounded w-100" style="height: 40px; opacity: 0.1;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="position-absolute bg-white px-4 py-3 rounded-4 shadow-lg d-flex align-items-center gap-3" style="bottom: -20px; right: -20px; transform: rotate(3deg);">
+                            <div class="rounded-circle bg-success d-flex justify-content-center align-items-center text-white" style="width: 45px; height: 45px;">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold text-dark">تشفير كامل للبيانات</h6>
+                                <small class="text-muted">مدعوم من API آمن</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 my-5">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <h6 class="text-gold fw-bold tracking-wide mb-2">مميزات النظام</h6>
+                <h2 class="display-5 fw-bold text-navy-deep">كل ما يحتاجه مكتبك في مكان واحد</h2>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-6 col-lg-3 fade-up">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrapper mx-auto">
+                            <i class="fas fa-briefcase fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">إدارة القضايا</h4>
+                        <p class="text-muted mb-0">تتبع دقيق لكل قضية، أطراف النزاع، المحكمة المختصة، والقرارات الصادرة مع أرشفة كاملة للمستندات.</p>
+                    </div>
+                </div>
+                <!-- Feature 2 -->
+                <div class="col-md-6 col-lg-3 fade-up delay-100">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrapper mx-auto">
+                            <i class="fas fa-bell fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">تنبيهات آلية</h4>
+                        <p class="text-muted mb-0">لن تفوتك أي جلسة بعد اليوم. نظام ذكي لتنبيهات الجلسات القادمة والمهام المستعجلة على لوحة التحكم المباشرة.</p>
+                    </div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col-md-6 col-lg-3 fade-up delay-200">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrapper mx-auto">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">أرشفة الموكلين</h4>
+                        <p class="text-muted mb-0">قاعدة بيانات آمنة تحتوي على كافة تفاصيل الموكلين، أرقام التوكيلات، وسجل القضايا المرتبطة بكل موكل.</p>
+                    </div>
+                </div>
+                <!-- Feature 4 -->
+                <div class="col-md-6 col-lg-3 fade-up delay-300">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon-wrapper mx-auto">
+                            <i class="fas fa-file-invoice-dollar fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">إدارة الأموال</h4>
+                        <p class="text-muted mb-0">تتبع الأتعاب، المصروفات، المبالغ المتبقية، واستخراج كشوف حساب احترافية للعملاء بضغطة زر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5 bg-navy-light text-white">
+        <div class="container py-5">
+            <div class="text-center mb-5 fade-up">
+                <h6 class="text-gold fw-bold mb-2">رحلتك معنا</h6>
+                <h2 class="display-5 fw-bold text-white">ابدأ استخدام النظام في 3 خطوات بسيطة</h2>
+            </div>
+            
+            <div class="row position-relative pt-4">
+                <!-- Connecting Line (Desktop only) -->
+                <div class="d-none d-md-block position-absolute" style="top: 30px; left: 15%; right: 15%; height: 2px; background: rgba(212,175,55,0.2); z-index: 0;"></div>
+                
+                <div class="col-md-4 text-center mb-5 mb-md-0 position-relative z-1 fade-up">
+                    <div class="step-circle">1</div>
+                    <h4 class="fw-bold mb-3 text-gold">إنشاء الحساب</h4>
+                    <p class="text-light opacity-75">سجل بياناتك وبيانات مكتبك القانوني، وسيتم تفعيل مساحة العمل الخاصة بك فوراً والمشفرة بالكامل.</p>
+                </div>
+                <div class="col-md-4 text-center mb-5 mb-md-0 position-relative z-1 fade-up delay-100">
+                    <div class="step-circle">2</div>
+                    <h4 class="fw-bold mb-3 text-gold">إضافة موكليك وقضاياك</h4>
+                    <p class="text-light opacity-75">قم بإدراج قضاياك الحالية وجدولة جلساتك القادمة بكل سهولة عبر واجهة مستخدم مبسطة وسريعة.</p>
+                </div>
+                <div class="col-md-4 text-center position-relative z-1 fade-up delay-200">
+                    <div class="step-circle">3</div>
+                    <h4 class="fw-bold mb-3 text-gold">إدارة مكتبك بذكاء</h4>
+                    <p class="text-light opacity-75">استمتع بتنبيهات تلقائية للجلسات، احصل على تقارير مالية، وتابع سير أعمال مكتبك من أي جهاز.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us & Contact Section -->
+    <section id="contact" class="py-5 my-5">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <!-- Why Choose Us -->
+                <div class="col-lg-6 fade-up">
+                    <h6 class="text-gold fw-bold mb-2">لماذا نحن؟</h6>
+                    <h2 class="display-6 fw-bold text-navy-deep mb-4">تقنية تواكب تطلعاتك</h2>
+                    <p class="lead text-muted mb-4">نحن ندمج أحدث التقنيات مع الفهم العميق لمتطلبات مكاتب المحاماة في الوطن العربي.</p>
+                    
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex gap-3 mb-4">
+                            <div class="text-gold mt-1"><i class="fas fa-shield-alt fa-2x"></i></div>
+                            <div>
+                                <h5 class="fw-bold mb-1">أمان بيانات لا يضاهى</h5>
+                                <p class="text-muted mb-0">نستخدم خوادم API مشفرة لضمان سرية بيانات موكليك وقضاياك.</p>
+                            </div>
+                        </li>
+                        <li class="d-flex gap-3 mb-4">
+                            <div class="text-gold mt-1"><i class="fas fa-bolt fa-2x"></i></div>
+                            <div>
+                                <h5 class="fw-bold mb-1">سرعة أداء فائقة</h5>
+                                <p class="text-muted mb-0">بنية تحتية حديثة (SPA) لضمان تصفح لحظي وتنقل سلس دون إعادة تحميل الصفحات.</p>
+                            </div>
+                        </li>
+                        <li class="d-flex gap-3">
+                            <div class="text-gold mt-1"><i class="fas fa-mobile-alt fa-2x"></i></div>
+                            <div>
+                                <h5 class="fw-bold mb-1">توافق تام مع الجوال</h5>
+                                <p class="text-muted mb-0">تصميم متجاوب 100% لتتمكن من متابعة جلساتك وإدارة مهامك من هاتفك المحمول.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="col-lg-6 fade-up delay-200">
+                    <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
+                        <h3 class="fw-bold mb-4 text-center text-navy-deep">اطلب نسختك الآن</h3>
+                        <form onsubmit="event.preventDefault(); alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.');">
+                            <div class="mb-3">
+                                <label class="form-label text-muted fw-bold">الاسم الكامل</label>
+                                <input type="text" class="form-control form-control-lg bg-light border-0" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-muted fw-bold">رقم الهاتف (واتساب)</label>
+                                <input type="tel" class="form-control form-control-lg bg-light border-0" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label text-muted fw-bold">البريد الإلكتروني</label>
+                                <input type="email" class="form-control form-control-lg bg-light border-0" required>
+                            </div>
+                            <button type="submit" class="btn btn-navy bg-navy text-white btn-lg w-100 rounded-pill fw-bold">إرسال الطلب</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-deep text-white pt-5 pb-3">
+        <div class="container text-center">
+            <div class="mb-4">
+                <i class="fas fa-balance-scale text-gold fa-3x mb-3"></i>
+                <h4 class="fw-bold">نظام إدارة المحاماة</h4>
+                <p class="text-light opacity-50 mx-auto" style="max-width: 400px;">شريكك التقني للارتقاء بمهنة المحاماة نحو التحول الرقمي.</p>
+            </div>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="#" class="text-white opacity-75 text-decoration-none fs-5"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white opacity-75 text-decoration-none fs-5"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white opacity-75 text-decoration-none fs-5"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white opacity-75 text-decoration-none fs-5"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <hr class="border-secondary mb-3">
+            <p class="text-light opacity-50 small mb-0">&copy; 2026 جميع الحقوق محفوظة. تم التطوير بواسطة مينا أبو سيفين.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Intersection Observer for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

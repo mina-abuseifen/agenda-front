@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | نظام إدارة المحاماة</title>
+
+    <!-- Bootstrap 5 RTL CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <link href="../css/sweetalert2.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+    <div id="authOverlay" class="w-100 h-100 d-flex justify-content-center align-items-center" style="z-index: 2000;">
+        <div class="card p-4 shadow-lg" style="width: 400px; max-width: 90%;">
+            <h3 class="text-center mb-4 text-primary">مكتب المحاماة</h3>
+            <ul class="nav nav-tabs mb-3" id="authTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#loginPane"
+                        type="button" role="tab">تسجيل الدخول</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#registerPane"
+                        type="button" role="tab">إنشاء حساب</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="authTabContent">
+                <div class="tab-pane fade show active" id="loginPane" role="tabpanel">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">تذكرني</label>
+                            </div>
+                            <a href="#" class="text-decoration-none text-muted small">نسيت كلمة المرور؟</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-2">دخول</button>
+                        <div class="text-center mt-3">
+                            <span class="text-muted small">ليس لديك حساب؟</span>
+                            <a href="javascript:void(0)"
+                                onclick="bootstrap.Tab.getOrCreateInstance(document.getElementById('register-tab')).show()"
+                                class="text-decoration-none small">إنشاء حساب جديد</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="registerPane" role="tabpanel">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">اسم المحامي</label>
+                                <input type="text" class="form-control" name="lawyerName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">اسم المكتب</label>
+                                <input type="text" class="form-control" name="officeName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">الرقم الضريبي</label>
+                                <input type="text" class="form-control" name="taxNumber">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">رقم الكارنية</label>
+                                <input type="text" class="form-control" name="barNumber">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label">العنوان</label>
+                                <textarea class="form-control" name="address" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">كلمة المرور</label>
+                                <input type="password" class="form-control" name="password" minlength="6" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-2">إنشاء حساب</button>
+                        <div class="text-center mt-3">
+                            <span class="text-muted small">لديك حساب بالفعل؟</span>
+                            <a href="javascript:void(0)"
+                                onclick="bootstrap.Tab.getOrCreateInstance(document.getElementById('login-tab')).show()"
+                                class="text-decoration-none small">تسجيل الدخول</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="../js/sweetalert2.all.min.js"></script>
+
+    <!-- App Logic -->
+    <script type="module">
+        import { login, register } from '../js/auth.js';
+        import { showToast, showSpinner, hideSpinner } from '../js/ui-utils.js';
+        import { initApp } from '../js/app.js';
+
+        // Keep checking auth state, if already logged in redirect to dashboard
+        initApp((user, userData) => {
+            if (user) {
+                window.location.replace('../index.html');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSpinner(); // show loading while checking auth state
+
+            // Handle tab switching from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            if (tab === 'register') {
+                const registerTab = document.getElementById('register-tab');
+                if (registerTab) {
+                    bootstrap.Tab.getOrCreateInstance(registerTab).show();
+                }
+            }
+
+            document.body.style.visibility = 'visible';
+            document.body.style.opacity = '1';
+            hideSpinner();
+
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                showSpinner();
+                const result = await login(formData.get('email'), formData.get('password'));
+                if (result.success) {
+                    showToast('success', 'تم تسجيل الدخول بنجاح');
+                    window.location.replace('../index.html');
+                } else {
+                    hideSpinner();
+                    showToast('error', 'فشل تسجيل الدخول: ' + result.error);
+                }
+            });
+
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const profileData = {
+                    lawyerName: formData.get('lawyerName'),
+                    officeName: formData.get('officeName'),
+                    taxNumber: formData.get('taxNumber'),
+                    barNumber: formData.get('barNumber'),
+                    address: formData.get('address')
+                };
+                showSpinner();
+                const result = await register(formData.get('email'), formData.get('password'), profileData);
+                if (result.success) {
+                    showToast('success', 'تم إنشاء الحساب بنجاح');
+                    window.location.replace('../index.html');
+                } else {
+                    hideSpinner();
+                    showToast('error', 'خطأ في إنشاء الحساب: ' + result.error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

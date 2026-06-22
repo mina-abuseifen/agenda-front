@@ -1,0 +1,177 @@
+<!-- Sessions Section (Daily Agenda) -->
+<div id="sessionsSection" class="p-0">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="mb-1">الأجندة اليومية</h3>
+            <p class="text-muted mb-0" id="agendaDateDisplay"></p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+                <i class="fas fa-plus-circle"></i> إضافة مهمة / استشارة
+            </button>
+            <input type="date" id="agendaDatePicker" class="form-control" style="width: auto;">
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 bg-primary text-white p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-0">إجمالي الجلسات</h6>
+                        <h2 class="mb-0" id="totalSessionsCount">0</h2>
+                    </div>
+                    <i class="fas fa-calendar-day fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 bg-warning text-dark p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-0">بانتظار الحضور</h6>
+                        <h2 class="mb-0" id="upcomingSessionsCount">0</h2>
+                    </div>
+                    <i class="fas fa-clock fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 bg-success text-white p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-0">تم الحضور</h6>
+                        <h2 class="mb-0" id="attendedSessionsCount">0</h2>
+                    </div>
+                    <i class="fas fa-check-circle fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0 bg-dark text-white p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-0">مهام المكتب</h6>
+                        <h2 class="mb-0" id="totalTasksCount">0</h2>
+                    </div>
+                    <i class="fas fa-tasks fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Sessions Column -->
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-white border-0 py-3">
+                    <h5 class="mb-0 text-primary"><i class="fas fa-gavel me-2"></i> جلسات المحكمة</h5>
+                </div>
+                <div class="table-responsive table-cards">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>رقم الرول</th>
+                                <th>رقم القضية</th>
+                                <th>الموكل</th>
+                                <th>المحكمة</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sessionsTableBody">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Column -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-white border-0 py-3">
+                    <h5 class="mb-0 text-success"><i class="fas fa-clipboard-list me-2"></i> مهام واستشارات</h5>
+                </div>
+                <div class="list-group list-group-flush" id="tasksListBody">
+                    <!-- Tasks will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Task Modal -->
+<div class="modal fade" id="addTaskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">إضافة مهمة / استشارة جديدة</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addTaskForm">
+                    <div class="mb-3">
+                        <label class="form-label">العنوان / تفاصيل المهمة</label>
+                        <input type="text" class="form-control" name="title" placeholder="مثلاً: كتابة عقد بيع، استشارة قانونية...">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">التاريخ</label>
+                            <input type="date" class="form-control" name="date" id="addTaskDate">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">النوع</label>
+                            <select class="form-select" name="type">
+                                <option value="Consultation">استشارة</option>
+                                <option value="Contract Drafting">صياغة عقد</option>
+                                <option value="Inspection">معاينة</option>
+                                <option value="Other">أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">اسم العميل (اختياري)</label>
+                        <input type="text" class="form-control" name="tempClientName" placeholder="للعملاء غير المسجلين">
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">إضافة إلى الأجندة</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Session Modal -->
+<div class="modal fade" id="updateSessionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تحديث الجلسة</h5>
+                <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateSessionForm">
+                    <input type="hidden" name="id">
+                    <div class="mb-3">
+                        <label class="form-label">الحالة</label>
+                        <select class="form-select" id="updateSessionStatusSelect" name="status">
+                            <option value="PendingAttendance">بانتظار الحضور</option>
+                            <option value="Attended">تم الحضور</option>
+                            <option value="Postponed">تم التأجيل</option>
+                            <option value="Cancelled">ملغاة</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 d-none" id="postponedDateGroup">
+                        <label class="form-label text-danger fw-bold">تاريخ الجلسة القادمة (تاريخ التأجيل)</label>
+                        <input type="date" class="form-control border-danger" name="postponedToDate" id="postponedToDateInput">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">القرار / ملاحظات الجلسة</label>
+                        <textarea class="form-control" name="decision" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">حفظ التحديث</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

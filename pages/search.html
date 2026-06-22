@@ -1,0 +1,48 @@
+<!-- Global Search Section -->
+<div id="searchSection" class="p-0">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="mb-1 text-primary"><i class="fas fa-search me-2"></i> البحث الشامل في النظام</h3>
+            <p class="text-muted mb-0">البحث الفوري والذكي عبر الموكلين، القضايا، الجلسات، وسجلات الأرشيف</p>
+        </div>
+    </div>
+
+    <!-- Search input -->
+    <div class="card shadow-sm border-0 mb-4 bg-primary text-white p-4" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);">
+        <div class="input-group input-group-lg shadow-sm" style="border-radius: 10px; overflow: hidden;">
+            <span class="input-group-text bg-white border-0 text-muted"><i class="fas fa-search"></i></span>
+            <input type="text" id="globalSearchInput" class="form-control border-0 ps-0 text-dark shadow-none" placeholder="اكتب للبحث عن أي شيء (الاسم، الهاتف، رقم القضية، المحكمة، التوكيل، الخصم...)...">
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <ul class="nav nav-pills gap-1" id="searchCategoryTabs">
+            <li class="nav-item">
+                <button class="nav-link active" data-category="all" id="tabAll">الكل <span class="badge bg-secondary ms-1" id="countAll">0</span></button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-category="clients" id="tabClients">الموكلين <span class="badge bg-secondary ms-1" id="countClients">0</span></button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-category="cases" id="tabCases">القضايا النشطة <span class="badge bg-secondary ms-1" id="countCases">0</span></button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-category="sessions" id="tabSessions">الجلسات <span class="badge bg-secondary ms-1" id="countSessions">0</span></button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-category="archives" id="tabArchives">الأرشيف <span class="badge bg-secondary ms-1" id="countArchives">0</span></button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Results Display -->
+    <div id="searchResultsContainer" class="row">
+        <!-- Results will be injected dynamically here -->
+        <div class="col-12 text-center text-muted py-5">
+            <i class="fas fa-search-plus fa-3x mb-3 opacity-25"></i>
+            <h5>ابدأ كتابة الكلمات للبحث</h5>
+            <p class="small">اكتب 3 أحرف على الأكثر للحصول على نتائج فورية</p>
+        </div>
+    </div>
+</div>

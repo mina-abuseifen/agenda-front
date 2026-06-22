@@ -1,0 +1,163 @@
+<div id="archiveSection" class="p-0" dir="rtl">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+        <div>
+            <h3 class="mb-1 text-secondary"><i class="fas fa-archive me-2"></i> أرشيف المكتب</h3>
+            <p class="text-muted mb-0">إدارة أرشيف الجلسات والقضايا القديمة المحفوظة في المكتب</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="btnAddManualArchive">
+            <i class="fas fa-plus me-1"></i> إضافة قضية مؤرشفة قديمة
+        </button>
+    </div>
+
+    <div class="card shadow-sm mb-4 border-0">
+        <div class="card-body p-3">
+            <div class="row g-2 align-items-end">
+                <div class="col-lg-4 col-md-6">
+                    <label class="form-label small text-muted">بحث</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 text-muted"><i class="fas fa-search"></i></span>
+                        <input type="text" id="archiveSearch" class="form-control border-start-0 ps-0" placeholder="اسم الموكل، رقم القضية، رقم الأرشيف، المحكمة...">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <label class="form-label small text-muted">النوع</label>
+                    <select id="archiveSourceFilter" class="form-select">
+                        <option value="all">الكل</option>
+                        <option value="session">أرشيف جلسات</option>
+                        <option value="manual">قضايا قديمة</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <label class="form-label small text-muted">السنة</label>
+                    <input type="number" id="archiveYearFilter" class="form-control" min="1800" max="2100" placeholder="السنة">
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <label class="form-label small text-muted">المحكمة</label>
+                    <input type="text" id="archiveCourtFilter" class="form-control" placeholder="المحكمة">
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <label class="form-label small text-muted">رقم الصندوق</label>
+                    <input type="text" id="archiveBoxFilter" class="form-control" placeholder="الصندوق">
+                </div>
+                <div class="col-12 text-end">
+                    <button class="btn btn-outline-secondary" id="btnClearArchiveSearch">
+                        <i class="fas fa-eraser me-1"></i> إعادة تعيين
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-secondary"><i class="fas fa-box-archive me-2"></i> سجلات الأرشيف</h5>
+            <span class="badge bg-light text-dark border" id="archiveCountBadge">0 سجل</span>
+        </div>
+        <div class="table-responsive table-cards">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">النوع</th>
+                        <th>رقم الأرشيف</th>
+                        <th>رقم القضية</th>
+                        <th>الموكل</th>
+                        <th>عنوان القضية</th>
+                        <th>المحكمة</th>
+                        <th>الموقع</th>
+                        <th>تاريخ الأرشفة</th>
+                        <th class="pe-4 text-end">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="archiveTableBody">
+                    <tr>
+                        <td colspan="9" class="text-center text-muted py-5">
+                            <div class="spinner-border text-primary" role="status"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="manualArchiveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <form class="modal-content" id="manualArchiveForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manualArchiveModalTitle">إضافة قضية مؤرشفة قديمة</h5>
+                    <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="manualArchiveId">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">رقم الأرشيف</label>
+                            <input type="text" class="form-control" id="manualArchiveNumber" placeholder="يترك فارغا للتوليد التلقائي">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">رقم القضية القديم</label>
+                            <input type="text" class="form-control" id="manualOldCaseNumber">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">سنة القضية</label>
+                            <input type="number" class="form-control" id="manualCaseYear" min="1800" max="2100">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">اسم الموكل <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="manualClientName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">اسم الخصم</label>
+                            <input type="text" class="form-control" id="manualOpponentName">
+                        </div>
+                        <div class="col-md-8">
+                            <label class="form-label">عنوان القضية <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="manualCaseTitle" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">نوع القضية</label>
+                            <input type="text" class="form-control" id="manualCaseType">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">المحكمة</label>
+                            <input type="text" class="form-control" id="manualCourtName">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">تاريخ الأرشفة</label>
+                            <input type="date" class="form-control" id="manualArchiveDate">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">رقم الصندوق</label>
+                            <input type="text" class="form-control" id="manualBoxNumber">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">رقم الرف</label>
+                            <input type="text" class="form-control" id="manualShelfNumber">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">مكان الحفظ</label>
+                            <input type="text" class="form-control" id="manualPhysicalLocation">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">اسم المحامي</label>
+                            <input type="text" class="form-control" id="manualLawyerName">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">الوسوم</label>
+                            <input type="text" class="form-control" id="manualTags" placeholder="مثال: مدني، قديم، تنفيذ">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">ملاحظات</label>
+                            <textarea class="form-control" id="manualNotes" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i> حفظ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
