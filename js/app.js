@@ -50,7 +50,7 @@ export function initApp(onUserAuthenticated) {
         }
     );
 
-    // Global listener cleanup on page navigation/unload
+    // Global listener cleaup on page navigation/unload
     window.addEventListener('beforeunload', () => {
         console.log('App is unloading, clearing active data listeners...');
         clearAllListeners();
