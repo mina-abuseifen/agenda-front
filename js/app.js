@@ -12,7 +12,7 @@ export function initApp(onUserAuthenticated) {
     document.body.style.visibility = 'hidden';
     document.body.style.transition = 'opacity 0.3s ease';
 
-    // Set up global auth listener
+    // Set up global auth listener // mina
     setupAuthListener(
         // On Login
         async (user, userData) => {
