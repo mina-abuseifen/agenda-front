@@ -1,0 +1,17 @@
+{
+  "status": 307,
+  "headers": {
+    "location": "/index.html#/finances",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/finances/layout,_N_T_/finances/page,_N_T_/finances"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/finances/__PAGE__",
+    "/finances",
+    "/_index",
+    "/_head"
+  ]
+}

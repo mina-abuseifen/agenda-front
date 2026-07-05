@@ -1,0 +1,13 @@
+{
+  "/[...legacy]/route": "/[...legacy]",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/cases/page": "/cases",
+  "/clients/page": "/clients",
+  "/dashboard/page": "/dashboard",
+  "/dashboard/sessions/page": "/dashboard/sessions",
+  "/finances/page": "/finances",
+  "/login/page": "/login",
+  "/page": "/",
+  "/register/page": "/register"
+}

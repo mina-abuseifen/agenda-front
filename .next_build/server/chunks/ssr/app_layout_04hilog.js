@@ -1,0 +1,3 @@
+module.exports=[62925,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsxs)("html",{lang:"ar",dir:"rtl",children:[(0,b.jsxs)("head",{children:[(0,b.jsx)("link",{rel:"stylesheet",href:"/css/bootstrap.rtl.min.css"}),(0,b.jsx)("link",{rel:"stylesheet",href:"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"})]}),(0,b.jsx)("body",{children:a})]})},"metadata",0,{title:"Lawyer System",description:"Legacy lawyer system migrated to Next.js"}])},19325,a=>{a.n(a.i(62925))}];
+
+//# sourceMappingURL=app_layout_04hilog.js.map

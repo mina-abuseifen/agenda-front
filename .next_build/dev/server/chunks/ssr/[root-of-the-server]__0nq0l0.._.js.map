@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///D:/My%20work/2026/freelancing/lawyer-system-version-one-main/lawyer-system-version-one-main/frontend/app/page.js"],"sourcesContent":["import { redirect } from \"next/navigation\";\n\nexport default function HomePage() {\n  redirect(\"/landing.html\");\n}\n"],"names":["HomePage"],"mappings":";;;;AAAA;AAAA;;AAEe,SAASA;IACtB,IAAA,iMAAQ,EAAC;AACX"}}]
+}

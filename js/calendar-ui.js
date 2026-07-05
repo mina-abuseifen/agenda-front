@@ -475,7 +475,7 @@ window.openSessionDetails = function (sessionId) {
     const isArchived = session.status === 'Archived';
     const actionFooter = `
         <div class="d-flex flex-wrap gap-2 justify-content-center">
-            <button type="button" class="btn btn-sm btn-outline-primary" onclick="Swal.close(); window.editSessionFromCalendar('${session.id}')" ${isArchived ? 'disabled' : ''}>ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ø¬Ù„Ø³Ø©</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" onclick="Swal.close(); window.editSessionFromCalendar('${session.id}')" ${isArchived ? 'disabled' : ''}>تعديل الجلسة</button>
             <button type="button" class="btn btn-sm btn-outline-secondary" onclick="Swal.close(); window.archiveSessionFromCalendar('${session.id}')" ${isArchived ? 'disabled' : ''}>أرشفة الجلسة</button>
             <button type="button" class="btn btn-sm btn-outline-success" onclick="Swal.close(); window.addOutcomeFromCalendar('${session.id}')" ${session.status !== 'Attended' || isArchived ? 'disabled' : ''}>نتيجة الجلسة</button>
             <button type="button" class="btn btn-sm btn-outline-primary" onclick="Swal.close(); window.viewCase('${session.caseId}')">عرض ملف القضية</button>

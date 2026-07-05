@@ -1,0 +1,13 @@
+{
+  "/[...legacy]/route": "app/[...legacy]/route.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/cases/page": "app/cases/page.js",
+  "/clients/page": "app/clients/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/sessions/page": "app/dashboard/sessions/page.js",
+  "/finances/page": "app/finances/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js"
+}

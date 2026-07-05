@@ -245,6 +245,12 @@ export async function initCasesUI() {
             }
         });
     }
+
+    if (window.pendingViewCaseId) {
+        const idToView = window.pendingViewCaseId;
+        window.pendingViewCaseId = null;
+        setTimeout(() => window.viewCase(idToView), 200);
+    }
 }
 
 // Payment Status Tracker logic
@@ -386,6 +392,14 @@ window.editCase = function (id) {
 };
 
 window.viewCase = function (id) {
+    if (!document.getElementById('viewCaseModal')) {
+        window.pendingViewCaseId = id;
+        import('./router.js').then(module => {
+            module.navigateTo('cases');
+        });
+        return;
+    }
+
     const cases = memoryCache.cases || [];
     const caseItem = cases.find(c => c.id === id);
     if (!caseItem) return;
