@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  distDir: '.next_build',
+  distDir: process.env.VERCEL ? undefined : '.next_build',
   async rewrites() {
     return [
       {
